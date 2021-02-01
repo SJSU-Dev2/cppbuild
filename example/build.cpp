@@ -9,19 +9,19 @@ int main(int argc, const char * argv[])
   main.AddIncludeDirectory("./libmap/include");
   main.AddIncludeDirectory("./libaverage/include");
 
-  Object map("./libmap/map.cpp");
-  map.AddIncludeDirectory("./libmap/include");
+  // Object map("./libmap/map.cpp");
+  // map.AddIncludeDirectory("./libmap/include");
 
-  Object average("./libaverage/average.cpp");
-  average.AddIncludeDirectory("./libaverage/include");
+  // Object average("./libaverage/average.cpp");
+  // average.AddIncludeDirectory("./libaverage/include");
 
   Project project;
   project.SetExecutableName("example.exe");
   project.AddLibrary(libaverage);
   project.AddLibrary(libmap);
   project.AddObject(main);
-  project.AddObject(map);
-  project.AddObject(average);
+  // project.AddObject(map);
+  // project.AddObject(average);
 
-  return project.Generate();
+  return project.Build();
 }
