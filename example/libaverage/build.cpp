@@ -2,6 +2,8 @@
 
 int main(int argc, const char * argv[])
 {
+  RebuildSelf();
+
   Object average("average.cpp");
   average.AddIncludeDirectory("./include");
 

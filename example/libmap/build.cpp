@@ -2,6 +2,8 @@
 
 int main(int argc, const char * argv[])
 {
+  RebuildSelf();
+
   Object map("map.cpp");
   map.AddIncludeDirectory("./include");
 
@@ -9,5 +11,4 @@ int main(int argc, const char * argv[])
   library.AddObject(map);
 
   return library.Build();
-  return 0;
 }
