@@ -2,6 +2,8 @@
 
 int main(int argc, const char * argv[])
 {
+  RebuildSelf();
+
   Library libaverage("./libaverage/");
   Library libmap("./libmap/");
 

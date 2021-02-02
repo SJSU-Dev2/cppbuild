@@ -1,5 +1,6 @@
 #include <cstdio>
 #include <cstdlib>
+#include <experimental/source_location>
 #include <filesystem>
 #include <numeric>
 #include <string>
@@ -414,6 +415,27 @@ class StaticLibrary : public CommonFinalProduct
   std::string archive_ = "ar";
   std::string ranlib_  = "ranlib";
 };
+
+void RebuildSelf(const std::experimental::source_location & location =
+                     std::experimental::source_location::current())
+{
+  std::filesystem::path source_path(location.file_name());
+  std::filesystem::path build_path(source_path);
+  build_path.replace_extension(".exe");
+
+  auto source_modification_time = std::filesystem::last_write_time(source_path);
+  auto build_modification_time  = std::filesystem::last_write_time(build_path);
+
+  if (source_modification_time > build_modification_time)
+  {
+    Print("REBUILD", "build.cpp has been updated, rebuilding build program");
+    Execute("g++ -std=c++20 " + source_path.string() + " -o " +
+            build_path.string());
+
+    Print("REBUILD", "Executing new build program");
+    Execute("./" + build_path.string());
+  }
+}
 
 // -----------------------------------------------------------------------------
 // Basic usage (in general)
