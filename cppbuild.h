@@ -1,5 +1,6 @@
 #include <cstdio>
 #include <cstdlib>
+#include <cstdlib>
 #include <experimental/source_location>
 #include <filesystem>
 #include <numeric>
@@ -434,6 +435,7 @@ void RebuildSelf(const std::experimental::source_location & location =
 
     Print("REBUILD", "Executing new build program");
     Execute("./" + build_path.string());
+    std::exit(0);
   }
 }
 
